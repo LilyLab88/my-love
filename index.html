@@ -2,177 +2,189 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For My Lorenzo ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --deep-red: #c9184a;
+        }
+
         body {
-            background-color: #fff0f3;
-            font-family: 'Georgia', serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--soft-pink);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            overflow: hidden; /* Prevents scrollbars when button jumps */
-            touch-action: manipulation;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 600px; width: 100%; position: relative; }
+        #main-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+        }
 
-        h1 { color: #ff4d6d; font-size: 2rem; margin-bottom: 20px; }
-
-        .gif-container img {
-            max-width: 200px;
+        .valentine-gif {
+            width: 100%;
+            max-width: 250px;
             border-radius: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
-        /* The Button Area */
-        .btn-wrapper {
+        h1 {
+            color: var(--deep-red);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
-            margin-top: 20px;
-            height: 100px;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
         }
 
         #yesBtn {
-            background-color: #ff4d6d;
+            background-color: var(--primary-pink);
             color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 22px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
-            z-index: 100;
-            transition: transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            transition: transform 0.2s;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
         }
 
         #noBtn {
-            background-color: #adb5bd;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            font-size: 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            position: absolute; /* Needed for the jumping effect */
-            transition: all 0.2s ease;
-            z-index: 50;
-        }
-
-        /* Love Letter Page */
-        #celebration { 
-            display: none; 
-            flex-direction: column; 
-            align-items: center;
-            animation: fadeIn 1.2s ease-in forwards;
-        }
-
-        /* Love Sticker instead of Picture */
-        .love-sticker {
-            font-size: 80px;
-            animation: beat 1s infinite alternate;
-            margin-bottom: 20px;
-        }
-
-        @keyframes beat {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
-        }
-
-        .letter {
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: left;
-            line-height: 1.8;
-            color: #333;
+            background-color: #dee2e6;
+            color: #495057;
+            padding: 12px 25px;
             font-size: 1rem;
-            border-top: 8px solid #ff4d6d;
-            white-space: pre-line;
-            max-width: 90%;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 999;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        #letter {
+            display: none;
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px;
+        }
+
+        .letter-text {
+            white-space: pre-line;
+            font-size: 1.1rem;
+        }
+
+        .mini-gif {
+            width: 100px;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
     </style>
 </head>
 <body>
 
-    <div id="main-content" class="container">
-        <div class="gif-container">
-            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF1NGw3cWMxYXExamw4Mnd5NzIxZGgxYmoycXRpdnUwcDFoemx3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4a5OPdT5FmQnv0mO93/giphy.gif" alt="Cute GIF">
-        </div>
-        <h1>Lorenzo, will you be my Valentine? ❤️</h1>
-        <div class="btn-wrapper">
-            <button id="yesBtn" onclick="celebrate()">YES!</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+    <div id="main-card">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF1NGw3cWMxYXExamw4Mnd5NzIxZGgxYmoycXRpdnUwcDFoemx3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4a5OPdT5FmQnv0mO93/giphy.gif" alt="Love GIF" class="valentine-gif">
+        <h1>Will you be my Valentine?</h1>
+        <div class="buttons">
+            <button id="yesBtn" class="btn" onclick="celebrate()">YES</button>
+            <button id="noBtn">No</button>
         </div>
     </div>
 
-    <div id="celebration" class="container">
-        <div class="love-sticker">💝</div>
-        
-        <div class="letter">
-My love,
+    <div id="letter">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF1NGw3cWMxYXExamw4Mnd5NzIxZGgxYmoycXRpdnUwcDFoemx3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4a5OPdT5FmQnv0mO93/giphy.gif" alt="Love GIF" class="mini-gif">
+        <div class="letter-text">
+            <strong>My love,</strong>
 
-I adore you more deeply than I’ve ever known how to adore another human being. Every day, I find myself in quiet awe of who you are. Your gentleness makes me feel safe in a way I didn’t even realize I’d been craving for so long. With you, my body relaxes, my heart softens, and the noise in my mind finally goes quiet.
+            I adore you more deeply than I’ve ever known how to adore another human being. Every day, I find myself in quiet awe of who you are. Your gentleness makes me feel safe in a way I didn’t even realize I’d been craving for so long. With you, my body relaxes, my heart softens, and the noise in my mind finally goes quiet.
 
-Your intelligence never fails to impress me. The way you think, the way you see the world, the way you solve problems—it draws me in again and again. I admire your mind just as much as I admire your heart.
+            Your intelligence never fails to impress me. The way you think, the way you see the world, the way you solve problems—it draws me in again and again. I admire your mind just as much as I admire your heart.
 
-I know expressing your emotions doesn’t always come easily to you, and I see how hard that can be. That’s why I appreciate every single effort you make, every change you’re willing to try, every step you take toward me. None of that goes unnoticed. None of it is taken for granted. It means more to me than I can ever fully explain.
+            I know expressing your emotions doesn’t always come easily to you, and I see how hard that can be. That’s why I appreciate every single effort you make, every change you’re willing to try, every step you take toward me. None of that goes unnoticed. None of it is taken for granted. It means more to me than I can ever fully explain.
 
-For the first time in my life, I feel like I can rest. Like I don’t have to keep running, proving, or bracing myself. With you, I feel ready to settle down, to build, to stay. You are my earth—the stability I’ve always desired. You ground me, hold me steady, and somehow still make my whole world feel bigger and safer at the same time.
+            For the first time in my life, I feel like I can rest. Like I don’t have to keep running, proving, or bracing myself. With you, I feel ready to settle down, to build, to stay. You are my earth—the stability I’ve always desired (I mean it). You ground me, hold me steady, and somehow still make my whole world feel bigger and safer at the same time.
 
-I am so proud of you. Proud of the man you are, proud of the man you’re becoming, and endlessly grateful that I get to love you.
+            I am so proud of you. Proud of the man you are, proud of the man you’re becoming, and endlessly grateful that I get to love you.
 
-Always,
-Love,
-Your Lily
+            Always,
+            <strong>Love, Your Future Wife</strong>
         </div>
-        <h2 style="color: #ff4d6d; margin: 30px 0;">Happy Valentine's! ❤️</h2>
     </div>
 
     <script>
+        const noBtn = document.getElementById('noBtn');
+
         function moveButton() {
-            const btn = document.getElementById('noBtn');
-            const yesBtn = document.getElementById('yesBtn');
-            
-            // Calculate random positions within the visible window
-            const maxX = window.innerWidth - btn.offsetWidth - 20;
-            const maxY = window.innerHeight - btn.offsetHeight - 20;
-            
-            const newX = Math.floor(Math.random() * maxX);
-            const newY = Math.floor(Math.random() * maxY);
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            const margin = 20;
 
-            btn.style.position = 'fixed'; // Ensures it can move anywhere on screen
-            btn.style.left = newX + 'px';
-            btn.style.top = newY + 'px';
+            const maxX = window.innerWidth - btnWidth - margin;
+            const maxY = window.innerHeight - btnHeight - margin;
 
-            // Make YES button bigger so it's harder to miss
-            const currentScale = parseFloat(yesBtn.style.transform.replace('scale(', '').replace(')', '')) || 1;
-            if (currentScale < 3) {
-                yesBtn.style.transform = `scale(${currentScale + 0.15})`;
-            }
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = 'fixed';
+            // Disable any transitions during the move so it's impossible to click
+            noBtn.style.transition = 'none'; 
+            noBtn.style.left = `${Math.max(margin, randomX)}px`;
+            noBtn.style.top = `${Math.max(margin, randomY)}px`;
         }
 
+        noBtn.addEventListener('mouseenter', moveButton);
+        
+        // Mobile support
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
         function celebrate() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('celebration').style.display = 'flex';
-            
             confetti({
-                particleCount: 200,
-                spread: 100,
+                particleCount: 150,
+                spread: 70,
                 origin: { y: 0.6 },
                 colors: ['#ff4d6d', '#ff758f', '#ffffff']
             });
+
+            document.getElementById('main-card').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+            document.body.style.backgroundColor = '#f8edeb';
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
