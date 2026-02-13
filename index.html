@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Lorenzo ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background-color: #fff0f3;
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 600px; width: 100%; }
+
+        h1 { color: #ff4d6d; font-size: 2rem; line-height: 1.2; margin-bottom: 20px; }
+
+        .gif-container img {
+            max-width: 230px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .btn-container { 
+            margin-top: 20px; 
+            position: relative; 
+            height: 150px; 
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn:hover { transform: scale(1.1); }
+
+        #noBtn {
+            position: absolute;
+            background-color: #adb5bd;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 50;
+        }
+
+        /* Celebration/Letter Styles */
+        #celebration { 
+            display: none; 
+            flex-direction: column; 
+            align-items: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .couple-img {
+            max-width: 280px;
+            border-radius: 15px;
+            border: 8px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .letter {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.1rem;
+            border-top: 8px solid #ff4d6d;
+            white-space: pre-line;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="main-content" class="container">
+        <div class="gif-container">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF1NGw3cWMxYXExamw4Mnd5NzIxZGgxYmoycXRpdnUwcDFoemx3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4a5OPdT5FmQnv0mO93/giphy.gif" alt="Cute GIF">
+        </div>
+        <h1 id="question">Lorenzo, will you be my Valentine? ❤️</h1>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="celebrate()">YES!</button>
+            <button id="noBtn" onmouseover="playfulNo()">No</button>
+        </div>
+    </div>
+
+    <div id="celebration" class="container">
+        <img src="https://raw.githubusercontent.com/LilyLab88/for-my-future-husband/main/WhatsApp%20Image%202026-02-13%20at%2012.15.12%20PM.jpeg" class="couple-img" alt="Our Photo">
+        
+        <div class="letter">
+My love,
+
+I adore you more deeply than I’ve ever known how to adore another human being. Every day, I find myself in quiet awe of who you are. Your gentleness makes me feel safe in a way I didn’t even realize I’d been craving for so long. With you, my body relaxes, my heart softens, and the noise in my mind finally goes quiet.
+
+Your intelligence never fails to impress me. The way you think, the way you see the world, the way you solve problems—it draws me in again and again. I admire your mind just as much as I admire your heart.
+
+I know expressing your emotions doesn’t always come easily to you, and I see how hard that can be. That’s why I appreciate every single effort you make, every change you’re willing to try, every step you take toward me. None of that goes unnoticed. None of it is taken for granted. It means more to me than I can ever fully explain.
+
+For the first time in my life, I feel like I can rest. Like I don’t have to keep running, proving, or bracing myself. With you, I feel ready to settle down, to build, to stay. You are my earth—the stability I’ve always desired. You ground me, hold me steady, and somehow still make my whole world feel bigger and safer at the same time.
+
+I am so proud of you. Proud of the man you are, proud of the man you’re becoming, and endlessly grateful that I get to love you.
+
+Always,
+Love,
+Your Lily
+        </div>
+        <h2 style="color: #ff4d6d; margin: 30px 0;">I love you! ❤️</h2>
+    </div>
+
+    <script>
+        const noMessages = [
+            "Are you sure?",
+            "Pikir-pikir dulu! 😜",
+            "Really??",
+            "Wrong button!",
+            "Try again!",
+            "You can't say no!",
+            "Di klik yang merah aja sayang...",
+            "Don't be mean! 🥺",
+            "I'm gonna cry...",
+            "Still no??"
+        ];
+        let messageIndex = 0;
+
+        function playfulNo() {
+            const btn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            // Move the button
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+
+            // Change the text
+            btn.innerHTML = noMessages[messageIndex];
+            messageIndex = (messageIndex + 1) % noMessages.length;
+
+            // Make the YES button grow slightly each time he misses
+            const currentScale = parseFloat(yesBtn.style.transform.replace('scale(', '').replace(')', '')) || 1;
+            yesBtn.style.transform = `scale(${currentScale + 0.1})`;
+        }
+
+        function celebrate() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('celebration').style.display = 'flex';
+            
+            confetti({
+                particleCount: 250,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#ff4d6d', '#ff758f', '#ffffff']
+            });
+        }
+    </script>
+</body>
+</html>
